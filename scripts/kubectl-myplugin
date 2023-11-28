@@ -1,0 +1,19 @@
+#!/usr/bin/bash
+
+# Define command-line arguments
+
+
+Resource=$2
+
+# Retrieve resource usage statistics from Kubernetes
+kubectl $1 $2 | tail -n +2 | while read line
+Namespace=${kubectl get namespaces}
+do
+  # Extract CPU and memory usage from the output
+  NAME=$(echo $line | awk '{print $1}')
+  CPU=$(echo $line | awk '{print $2}')
+  MEMORY=$(echo $line | awk '{print $4}')
+
+  # Output the statistics to the console
+echo "${Resource}, ${Namespace}, ${NAME}, ${CPU}, ${MEMORY}"
+done
