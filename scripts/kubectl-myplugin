@@ -2,18 +2,22 @@
 
 # Define command-line arguments
 
-# arg1 - command, for example "top"
+# The first ARG is KUBECOMMAND, for example "top"
 
-arg1=$1
+KUBECOMMAND=$1
 
-# arg2 - target "node" or "pod"
+# The second ARG is RESOURCE_TYPE, for example "node" or "pod"
 
-arg2=$2
+RESOURCE_TYPE=$2
 
-Namespace=$(kubectl get namespaces)
+# The third ARG is NAMESPACE
+
+NAMESPACE=$3
 
 # Retrieve resource usage statistics from Kubernetes
-kubectl arg1 arg2 | tail -n +2 | while read line
+
+
+kubectl  ${KUBECOMMAND} ${RESOURCE_TYPE} -n ${NAMESPACE} | tail -n +2 | while read line
 do
   # Extract CPU and memory usage from the output
   NAME=$(echo $line | awk '{print $1}')
@@ -21,5 +25,5 @@ do
   MEMORY=$(echo $line | awk '{print $4}')
 
   # Output the statistics to the console
-echo "${arg2}, ${Namespace}, ${NAME}, ${CPU}, ${MEMORY}"
+echo "${RESOURCE_TYPE}, ${NAMESPACE}, ${NAME}, ${CPU}, ${MEMORY}"
 done
