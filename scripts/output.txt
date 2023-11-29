@@ -1,0 +1,10 @@
+{pod  demo  ambassador-5f859c79c9-pxtpl  5m  139Mi}
+{pod  demo  cache-858575fc54-bc5kv  1m  6Mi}
+{pod  demo  db-7968646c85-hcmr2  3m  447Mi}
+{pod  demo  demo-api-5479bcf989-s8n5f  1m  6Mi}
+{pod  demo  demo-ascii-548b45d685-z99bc  1m  3Mi}
+{pod  demo  demo-data-78b5b48794-thvn8  1m  9Mi}
+{pod  demo  demo-front-548899b579-5bjxp  1m  3Mi}
+{pod  demo  demo-img-5fd4bdf8bd-2mmmp  1m  5Mi}
+{pod  demo  demo-nats-0  1m  12Mi}
+{pod  demo  demo-nats-box-f9c9b584c-qhhqx  1m  0Mi}

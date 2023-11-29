@@ -1,0 +1,1 @@
+{pod  demo  demo-nats-box-f9c9b584c-qhhqx  1m  2Mi}

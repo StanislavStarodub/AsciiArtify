@@ -1,6 +1,12 @@
 #!/usr/bin/bash
 
-# Define command-line arguments
+# Define command-line argument
+
+
+if [ $# -lt 3 ]; then
+	echo "use next args: top pod argocd (or demo) "
+  exit
+fi
 
 # The first ARG is KUBECOMMAND, for example "top"
 
@@ -10,20 +16,20 @@ KUBECOMMAND=$1
 
 RESOURCE_TYPE=$2
 
-# The third ARG is NAMESPACE
+# The third ARG is NAMESPACE, for example argocd
 
 NAMESPACE=$3
 
 # Retrieve resource usage statistics from Kubernetes
 
-
-kubectl  ${KUBECOMMAND} ${RESOURCE_TYPE} -n ${NAMESPACE} | tail -n +2 | while read line
+kubectl "$KUBECOMMAND" "$RESOURCE_TYPE" "-n" "$NAMESPACE"  | tail -n +2 | while read line
 do
   # Extract CPU and memory usage from the output
   NAME=$(echo $line | awk '{print $1}')
   CPU=$(echo $line | awk '{print $2}')
-  MEMORY=$(echo $line | awk '{print $4}')
+  MEMORY=$(echo $line | awk '{print $3}')
 
   # Output the statistics to the console
-echo "${RESOURCE_TYPE}, ${NAMESPACE}, ${NAME}, ${CPU}, ${MEMORY}"
+  
+echo "${RESOURCE_TYPE}  ${NAMESPACE}  ${NAME}  ${CPU}  ${MEMORY}" | tee output.txt
 done
